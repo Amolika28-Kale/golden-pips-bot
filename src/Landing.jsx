@@ -12,17 +12,17 @@ const navigate = useNavigate();
 
 const performanceData = [
   { month: "Jan", value: 35 },
-  { month: "Feb", value: 45 },
-  { month: "Mar", value: 38 },
+  { month: "Feb", value: 40 },
+  { month: "Mar", value: 45 },
   { month: "Apr", value: 42 },
-  { month: "May", value: 40 },
-  { month: "Jun", value: 35 },
+  { month: "May", value: 50 },
+  { month: "Jun", value: 50 },
   { month: "Jul", value: 50 },
-    { month: "Aug", value: 45 },
-    { month: "Sep", value: 40 },
-    { month: "Oct", value: 38 },
-    { month: "Nov", value: 42 },
-    { month: "Dec", value: 48 },
+    { month: "Aug", value: 50 },
+    { month: "Sep", value: 50 },
+    { month: "Oct", value: 50 },
+    { month: "Nov", value: 50 },
+    { month: "Dec", value: 50 },
 
 ];
 
@@ -426,34 +426,58 @@ const performanceData = [
           {/* Testimonials */}
           <div className="mt-16 max-w-6xl mx-auto">
            <div className="bg-white/10 p-6 rounded-xl mt-4">
-<div className="bg-white/10 p-6 rounded-xl mt-4">
-  <div className="bg-white/10 p-6 rounded-md text-center text-lg mb-6">
+
+<div className="bg-white/10 p-4 sm:p-6 rounded-xl mt-4">
+  
+  {/* Header: Reduced padding and font size for mobile, increased for desktop */}
+  <div className="bg-white/10 p-3 sm:p-4 rounded-md text-sm sm:text-lg font-semibold text-center mb-4 sm:mb-6">
     Monthly Performance Overview
   </div>
 
+  {/* Chart Container: Height fixed at 64, but can be adjusted for specific breakpoints if needed. */}
   <div className="w-full h-64">
-    <ResponsiveContainer>
-      <LineChart data={performanceData}>
+    <ResponsiveContainer width="100%" height="100%">
+      <LineChart data={performanceData} margin={{ top: 5, right: 10, left: -10, bottom: 5 }}>
+        
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.2)" />
-        <XAxis dataKey="month" stroke="#fff" />
-        <YAxis stroke="#fff" />
-        <Tooltip 
-          contentStyle={{ background: "rgba(0,0,0,0.7)", borderRadius: "8px", border: "none" }}
-          labelStyle={{ color: "#fff" }}
-          itemStyle={{ color: "#fff" }}
+        
+        {/* XAxis: Adjusted font size for mobile readability (text-xs) */}
+        <XAxis 
+          dataKey="month" 
+          stroke="#fff" 
+          fontSize={10} 
+          tickLine={false} 
+          axisLine={false}
         />
+        
+        {/* YAxis: Adjusted font size and removed tick line for cleaner look on small screens */}
+        <YAxis 
+          stroke="#fff" 
+          fontSize={10} 
+          tickLine={false} 
+          axisLine={false} 
+        />
+        
+        {/* Tooltip: Kept consistent dark theme styling */}
+        <Tooltip 
+          contentStyle={{ background: "rgba(0,0,0,0.8)", borderRadius: "8px", border: "none" }}
+          labelStyle={{ color: "#fff", fontWeight: "bold" }}
+          itemStyle={{ color: "#4ade80" }}
+        />
+        
         <Line 
           type="monotone" 
           dataKey="value" 
           stroke="#4ade80" 
           strokeWidth={3} 
-          dot={{ r: 5, fill: "#4ade80", strokeWidth: 2 }}
+          dot={{ r: 4, fill: "#4ade80", strokeWidth: 1 }} // Smaller dot on mobile
+          activeDot={{ r: 8, stroke: '#4ade80', strokeWidth: 2 }} // Active dot remains prominent
         />
+        
       </LineChart>
     </ResponsiveContainer>
   </div>
 </div>
-
 
 
               <div className="mt-10 grid md:grid-cols-3 gap-8">
