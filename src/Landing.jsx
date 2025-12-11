@@ -2,9 +2,27 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Helmet } from "react-helmet";
+import { XAxis, Tooltip, ResponsiveContainer, BarChart, Bar } from "recharts";
 
 export default function Landing() {
   const [isPaymentModalOpen, setPaymentModalOpen] = useState(false);
+const [isMenuOpen, setMenuOpen] = useState(false);
+
+const monthlyData = [
+  { month: "Jan", value: 20 },
+  { month: "Feb", value: 25 },
+  { month: "Mar", value: 30 },
+  { month: "Apr", value: 28 },
+  { month: "May", value: 32 },
+  { month: "Jun", value: 35 },
+  { month: "Jul", value: 37 },
+  { month: "Aug", value: 36 },
+  { month: "Sep", value: 38 },
+  { month: "Oct", value: 40 },
+  { month: "Nov", value: 42 },
+  { month: "Dec", value: 45 },
+];
+
 
   const IMAGES = {
     chartThumb: "https://images.unsplash.com/photo-1535320903710-d993d3d77d29?w=600&auto=format&fit=crop&q=60",
@@ -123,7 +141,7 @@ export default function Landing() {
               {/* Content */}
               <div className="p-6 space-y-8">
                 <div className="text-center text-sm text-gray-500">
-                  Scan the QR code or copy the address below to send payment. **Ensure you select the correct network!**
+                  Scan the QR code or copy the address below to send payment. Ensure you select the correct network!
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-8">
@@ -190,32 +208,99 @@ export default function Landing() {
       <div className="font-sans antialiased bg-white text-slate-900">
 
         {/* ---------------- HEADER FULL-WIDTH ---------------- */}
-        <header className="bg-white border-b border-gray-200 w-full sticky top-0 z-40">
-          <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
-            <div className="flex items-center gap-3">
-      <div className="w-10 h-10 rounded-md bg-gradient-to-br  to-indigo-600 flex items-center justify-center text-white font-bold">
-                  <img src="./images/logo.png" alt="Logo" className="w-6 h-6" />
-                </div>
+<header className="bg-white border-b border-gray-200 w-full sticky top-0 z-40">
 
-              <span className="font-semibold text-lg">Golden Pips Bot</span>
-            </div>
+  {/* Mobile menu state */}
+  <div className="md:hidden">
+    {isMenuOpen && (
+      <div 
+        onClick={() => setMenuOpen(false)}
+        className="fixed inset-0 bg-black/40 backdrop-blur-sm z-20"
+      />
+    )}
+  </div>
 
-            <nav className="hidden md:flex items-center gap-8 text-sm text-slate-600">
-              <a href="#about" className="hover:text-slate-900">About</a>
-              <a href="#features" className="hover:text-slate-900">Features</a>
-              <a href="#results" className="hover:text-slate-900">Results</a>
-              <a href="#contact">Contact</a>
-            </nav>
+  <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4 relative z-30">
+    {/* LOGO */}
+    <div className="flex items-center gap-3">
+      <div className="w-10 h-10 rounded-md bg-gradient-to-br  to-indigo-600 flex items-center justify-center text-white font-bold">
+        <img src="./images/logo.png" alt="Logo" className="w-6 h-6" />
+      </div>
+      <span className="font-semibold text-lg">Golden Pips Bot</span>
+    </div>
 
-            <button className="hidden md:inline-block bg-green-500 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-green-600 shadow">
-              Get Started
-            </button>
+    {/* DESKTOP NAV */}
+    <nav className="hidden md:flex items-center gap-8 text-sm text-slate-700 font-medium ">
+      <a href="#about" className="hover:text-slate-900">About</a>
+      <a href="#features" className="hover:text-slate-900">Features</a>
+      <a href="#results" className="hover:text-slate-900">Results</a>
+      <a href="#contact" className="hover:text-slate-900">Contact</a>
+    </nav>
 
-            <div className="md:hidden">
-              <button aria-label="menu" className="p-2 text-slate-700 text-xl">☰</button>
-            </div>
-          </div>
-        </header>
+    <button className="hidden md:inline-block bg-green-500 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-green-600 shadow">
+      Get Started
+    </button>
+
+    {/* MOBILE HAMBURGER */}
+    <button
+      aria-label="menu"
+      className="md:hidden p-2 text-slate-700 text-2xl"
+      onClick={() => setMenuOpen(!isMenuOpen)}
+    >
+      ☰
+    </button>
+  </div>
+
+  {/* ---------------- MOBILE MENU ---------------- */}
+  <AnimatePresence>
+    {isMenuOpen && (
+      <motion.div
+        initial={{ opacity: 0, y: -12 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -12 }}
+        transition={{ duration: 0.25 }}
+        className="md:hidden bg-white border-t border-gray-200 px-6 py-6 space-y-4 shadow-md"
+      >
+        <a
+          href="#about"
+          className="block text-slate-700 text-base py-2"
+          onClick={() => setMenuOpen(false)}
+        >
+          About
+        </a>
+        <a
+          href="#features"
+          className="block text-slate-700 text-base py-2"
+          onClick={() => setMenuOpen(false)}
+        >
+          Features
+        </a>
+        <a
+          href="#results"
+          className="block text-slate-700 text-base py-2"
+          onClick={() => setMenuOpen(false)}
+        >
+          Results
+        </a>
+        <a
+          href="#contact"
+          className="block text-slate-700 text-base py-2"
+          onClick={() => setMenuOpen(false)}
+        >
+          Contact
+        </a>
+
+        <button
+          onClick={() => setMenuOpen(false)}
+          className="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-full font-medium mt-4 shadow"
+        >
+          Get Started
+        </button>
+      </motion.div>
+    )}
+  </AnimatePresence>
+</header>
+
 
         {/* ---------------- HERO ---------------- */}
         <section className="relative bg-gradient-to-r from-[#0F2B7F] via-[#2E4DBD] to-[#5D3BEC] text-white py-16 lg:py-24">
@@ -233,7 +318,7 @@ export default function Landing() {
                 </h1>
 
                 <p className="text-lg max-w-xl text-white/90">
-                  Your AI-powered trading partner that analyzes **BTC, Gold, and Currency data** to deliver highly accurate trading signals. **Plug and Play.**
+                  Your AI-powered trading partner that analyzes BTC, Gold, and Currency data to deliver highly accurate trading signals. Plug and Play.
                 </p>
 
                 <div className="flex flex-wrap gap-3 mt-4">
@@ -308,8 +393,8 @@ export default function Landing() {
             <div className="max-w-4xl mx-auto text-center">
                 <h4 className="text-2xl font-bold text-slate-800">Transparent & Professional Growth</h4>
                 <p className="mt-3 text-slate-600">
-                    We manage your forex investment with **institutional-grade risk control**, disciplined strategies, and transparent execution. 
-                    No aggressive lot sizing, no emotional trading, and no unrealistic promises — just professional market analysis focused on **capital protection** and sustainable long-term growth.
+                    We manage your forex investment with institutional-grade risk control, disciplined strategies, and transparent execution. 
+                    No aggressive lot sizing, no emotional trading, and no unrealistic promises — just professional market analysis focused on capital protection and sustainable long-term growth.
                 </p>
                 <div className="mt-4 text-sm font-semibold text-blue-600">
                     Invest Smart. Think Long-Term.
@@ -323,8 +408,8 @@ export default function Landing() {
             <h2 className="text-3xl font-extrabold">About Golden Pips Bot</h2>
             <div className="w-20 h-1 bg-gradient-to-r from-green-400 to-blue-500 mx-auto mt-3 rounded" />
             <p className="mt-4 text-slate-600 max-w-3xl mx-auto">
-              We understand how the **BTC, Gold, and Currency** markets move — driven by data,
-              trends, and global events. Our bot analyzes **30+ years of historical data** with live updates to generate precise trading signals.
+              We understand how the BTC, Gold, and Currency markets move — driven by data,
+              trends, and global events. Our bot analyzes 30+ years of historical data with live updates to generate precise trading signals.
             </p>
           </div>
 
@@ -427,7 +512,7 @@ export default function Landing() {
         <section id="results" className="py-20 px-6 bg-gradient-to-r from-[#2C2C72] to-[#6B3CA7] text-white">
           <div className="max-w-5xl mx-auto text-center">
             <h2 className="text-3xl font-extrabold">Proven Results</h2>
-            <p className="text-white/80 mt-3">Thousands of traders trust Golden Pips Bot. **Earn up to 2% to 15% monthly***</p>
+            <p className="text-white/80 mt-3">Thousands of traders trust Golden Pips Bot. Earn up to 2% to 15% monthly</p>
           </div>
           <div className="mt-10 max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
             {[
@@ -443,10 +528,49 @@ export default function Landing() {
           </div>
           {/* Testimonials */}
           <div className="mt-16 max-w-6xl mx-auto">
-            <div className="bg-white/10 p-6 rounded-xl">
-              <div className="bg-white/10 p-6 rounded-md text-center text-lg">
-                Monthly Performance Overview: **+2% to +30%** - 
-              </div>
+           <div className="bg-white/10 p-6 rounded-xl mt-4">
+<div className="p-6 rounded-2xl mt-4 bg-gradient-to-r from-[#2b2e83] to-[#532a93] shadow-xl">
+  <h2 className="text-center text-xl font-semibold text-white mb-6">
+    Monthly Performance Overview
+  </h2>
+
+  <ResponsiveContainer width="100%" height={180}>
+    <BarChart data={monthlyData} barCategoryGap={20}>
+      <defs>
+        <linearGradient id="greenGradient" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#5EF18A" />
+          <stop offset="100%" stopColor="#3DDC84" />
+        </linearGradient>
+      </defs>
+
+      <Tooltip
+        cursor={{ fill: "rgba(255,255,255,0.1)" }}
+        contentStyle={{
+          background: "rgba(0,0,0,0.6)",
+          borderRadius: "8px",
+          border: "none",
+          color: "#fff",
+        }}
+      />
+
+      <XAxis
+        dataKey="month"
+        stroke="#fff"
+        tick={{ fill: "#fff", fontSize: 12 }}
+        axisLine={false}
+        tickLine={false}
+      />
+
+      <Bar
+        dataKey="value"
+        fill="url(#greenGradient)"
+        radius={[10, 10, 10, 10]}
+      />
+    </BarChart>
+  </ResponsiveContainer>
+</div>
+
+
               <div className="mt-10 grid md:grid-cols-3 gap-8">
                 {testimonials.map((t) => (
                   <div key={t.name} className="bg-white/10 p-5 rounded-xl text-white">
@@ -637,7 +761,7 @@ export default function Landing() {
                 <div className="font-semibold">Golden Pips Bot</div>
               </div>
               <p className="text-sm text-gray-400 mt-4">
-                Your AI-powered trading partner.
+                Your AI-powered trading partner for consistent Bitcoin market success.
               </p>
             </div>
             <div>
