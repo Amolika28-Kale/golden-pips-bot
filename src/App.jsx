@@ -1,3 +1,16 @@
 import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import Landing from "./Landing";
-export default function App() { return <Landing />; }
+import CryptoPayment from "./CryptoPayment";
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/crypto-payment" element={<CryptoPayment />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
