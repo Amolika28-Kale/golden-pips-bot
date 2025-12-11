@@ -207,30 +207,33 @@ const monthlyData = [
 
       <div className="font-sans antialiased bg-white text-slate-900">
 
-        {/* ---------------- HEADER FULL-WIDTH ---------------- */}
-<header className="bg-white border-b border-gray-200 w-full sticky top-0 z-40">
+       <header className="bg-white border-b border-gray-200 w-full sticky top-0 z-50">
 
-  {/* Mobile menu state */}
-  <div className="md:hidden">
+  {/* Background overlay on mobile */}
+  <AnimatePresence>
     {isMenuOpen && (
-      <div 
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="fixed inset-0 bg-black/40 backdrop-blur-sm md:hidden z-40"
         onClick={() => setMenuOpen(false)}
-        className="fixed inset-0 bg-black/40 backdrop-blur-sm z-20"
       />
     )}
-  </div>
+  </AnimatePresence>
 
-  <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4 relative z-30">
+  {/* Header main */}
+  <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4 relative z-50">
     {/* LOGO */}
     <div className="flex items-center gap-3">
-      <div className="w-10 h-10 rounded-md bg-gradient-to-br  to-indigo-600 flex items-center justify-center text-white font-bold">
+      <div className="w-10 h-10 rounded-md bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold">
         <img src="./images/logo.png" alt="Logo" className="w-6 h-6" />
       </div>
       <span className="font-semibold text-lg">Golden Pips Bot</span>
     </div>
 
-    {/* DESKTOP NAV */}
-    <nav className="hidden md:flex items-center gap-8 text-sm text-slate-700 font-medium ">
+    {/* Desktop Nav */}
+    <nav className="hidden md:flex items-center gap-8 text-sm text-slate-700 font-medium">
       <a href="#about" className="hover:text-slate-900">About</a>
       <a href="#features" className="hover:text-slate-900">Features</a>
       <a href="#results" className="hover:text-slate-900">Results</a>
@@ -241,59 +244,41 @@ const monthlyData = [
       Get Started
     </button>
 
-    {/* MOBILE HAMBURGER */}
+    {/* Hamburger Button */}
     <button
       aria-label="menu"
-      className="md:hidden p-2 text-slate-700 text-2xl"
       onClick={() => setMenuOpen(!isMenuOpen)}
+      className="md:hidden p-2 text-slate-700 text-2xl"
     >
       ☰
     </button>
   </div>
 
-  {/* ---------------- MOBILE MENU ---------------- */}
+  {/* Mobile Dropdown */}
   <AnimatePresence>
     {isMenuOpen && (
       <motion.div
-        initial={{ opacity: 0, y: -12 }}
+        initial={{ opacity: 0, y: -16 }}
         animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -12 }}
+        exit={{ opacity: 0, y: -16 }}
         transition={{ duration: 0.25 }}
-        className="md:hidden bg-white border-t border-gray-200 px-6 py-6 space-y-4 shadow-md"
+        className="md:hidden bg-white border-t border-gray-200 px-6 py-6 space-y-4 shadow-lg z-50 relative"
       >
-        <a
-          href="#about"
-          className="block text-slate-700 text-base py-2"
-          onClick={() => setMenuOpen(false)}
-        >
-          About
-        </a>
-        <a
-          href="#features"
-          className="block text-slate-700 text-base py-2"
-          onClick={() => setMenuOpen(false)}
-        >
-          Features
-        </a>
-        <a
-          href="#results"
-          className="block text-slate-700 text-base py-2"
-          onClick={() => setMenuOpen(false)}
-        >
-          Results
-        </a>
-        <a
-          href="#contact"
-          className="block text-slate-700 text-base py-2"
-          onClick={() => setMenuOpen(false)}
-        >
-          Contact
-        </a>
+        <a href="#about" className="block text-slate-700 text-base py-2"
+          onClick={() => setMenuOpen(false)}>About</a>
+
+        <a href="#features" className="block text-slate-700 text-base py-2"
+          onClick={() => setMenuOpen(false)}>Features</a>
+
+        <a href="#results" className="block text-slate-700 text-base py-2"
+          onClick={() => setMenuOpen(false)}>Results</a>
+
+        <a href="#contact" className="block text-slate-700 text-base py-2"
+          onClick={() => setMenuOpen(false)}>Contact</a>
 
         <button
           onClick={() => setMenuOpen(false)}
-          className="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-full font-medium mt-4 shadow"
-        >
+          className="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-full font-medium mt-4 shadow">
           Get Started
         </button>
       </motion.div>
