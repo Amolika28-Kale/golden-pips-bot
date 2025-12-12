@@ -1,5 +1,3 @@
-// src/pages/Landing.jsx (Updated with Classic & Trustworthy Theme)
-
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Helmet } from "react-helmet";
@@ -50,7 +48,7 @@ export default function Landing() {
   const CONTACT_INFO = {
     whatsappNumber: "+91 8689937319",
     callNumber: "+91 8689937319",
-    email: "support@goldenpipsbot.com",
+    email: "support.goldenpipsbot@gmail.com",
     wallets: {
       bep20: "0xa91D8Ba3029FC14907cb4bEE60763869f0eD88f7",
       trc20: "TGTmCXghBxNAkUxeL7hnDPjQiQicKG26v2"
@@ -90,10 +88,10 @@ export default function Landing() {
     const starArray = [];
 
     for (let i = 0; i < fullStars; i++) {
-      starArray.push(<span key={`full-${i}`} className="text-[#C6A479]">★</span>); // GOLD STAR
+      starArray.push(<span key={`full-${i}`} className="text-[#C6A479]">★</span>); 
     }
     if (hasHalfStar) {
-      starArray.push(<span key="half" className="text-[#C6A479]">★</span>); // GOLD STAR
+      starArray.push(<span key="half" className="text-[#C6A479]">★</span>); 
     }
     const emptyStars = 5 - Math.ceil(rating);
     for (let i = 0; i < emptyStars; i++) {
@@ -288,7 +286,6 @@ export default function Landing() {
                   <div className="mt-2 text-sm font-semibold text-slate-700">
                     XAU / USD
                   </div>
-                  {/* <div className="text-xs text-[#2B5876] mt-1">65,000</div> Updated small metric color */}
                 </div>
               </motion.div>
             </div>
