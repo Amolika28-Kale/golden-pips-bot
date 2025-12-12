@@ -46,7 +46,7 @@ export default function CryptoPayment() {
           🪙 Crypto Payment Details (USDT)
         </h2>
         <p className="text-center text-sm sm:text-md text-gray-500 mb-6 sm:mb-8">
-          Securely complete your payment using BEP20 (BSC) or TRC20 (TRON) network.
+          Securely complete your payment using BEP20 or TRC20 network.
         </p>
 
         {/* Wallet Options Grid: Stacks on mobile, 2 columns on medium+ screens */}
@@ -55,7 +55,6 @@ export default function CryptoPayment() {
           {/* BEP20 Card */}
           <WalletCard
             network="BEP20"
-            networkName="Binance Smart Chain (BSC)"
             color="text-yellow-600"
             bgColor="bg-yellow-50"
             qrData={CONTACT_INFO.wallets.bep20}
@@ -66,7 +65,6 @@ export default function CryptoPayment() {
           {/* TRC20 Card */}
           <WalletCard
             network="TRC20"
-            networkName="TRON Network"
             color="text-red-600"
             bgColor="bg-red-50"
             qrData={CONTACT_INFO.wallets.trc20}
@@ -101,38 +99,37 @@ export default function CryptoPayment() {
   );
 }
 
-// Separate component for a clean wallet card design
-const WalletCard = ({ network, networkName, color, bgColor, qrData, walletAddress, theme }) => (
-  // Reduced card padding slightly for mobile
-  <div className={`p-5 sm:p-6 rounded-xl ${bgColor} shadow-md transition duration-300 hover:shadow-lg border border-gray-200`}>
-    <h3 className={`text-xl font-bold mb-4 ${color} flex items-center justify-between`}>
-      {network} <span className="text-sm text-gray-500 font-normal">({networkName})</span>
-    </h3>
+const WalletCard = ({ network, color, bgColor, qrData, walletAddress }) => (
+  <div className={`p-5 sm:p-6 rounded-xl ${bgColor} shadow-md transition duration-300 hover:shadow-lg border border-gray-200`}>
+    
+    <h3 className={`text-xl font-bold mb-4 ${color}`}>
+      {network}
+    </h3>
 
-    {/* QR Code Section */}
-    <div className="flex justify-center mb-4 sm:mb-5 p-3 bg-white rounded-lg border border-gray-300">
-      <img
-        src={`https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${qrData}`}
-        alt={`${network} QR Code`}
-        // Slightly smaller QR code on mobile for better fit
-        className="w-36 h-36 sm:w-40 sm:h-40" 
-      />
-    </div>
-    
-    <p className="text-center text-xs sm:text-sm text-gray-600 mb-2">Scan the QR code or copy the address:</p>
+    <div className="flex justify-center mb-4 sm:mb-5 p-3 bg-white rounded-lg border border-gray-300">
+      <img
+        src={`https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${qrData}`}
+        alt={`${network} QR Code`}
+        className="w-36 h-36 sm:w-40 sm:h-40"
+      />
+    </div>
 
-    {/* Address Box with Copy Button - Ensures full width on mobile */}
-    <div className="flex items-center bg-gray-100 p-3 rounded-lg border border-gray-300">
-      <div className="flex-1 text-xs break-all font-mono text-slate-800 select-all">
-        {walletAddress}
-      </div>
-      <button 
-        onClick={() => copyToClipboard(walletAddress)}
-        className={`ml-3 p-2 rounded-lg bg-white shadow-sm border border-gray-300 hover:bg-gray-200 transition duration-300`}
-        title="Copy Address"
-      >
-        <ClipboardCopy size={16} className={color} />
-      </button>
-    </div>
-  </div>
+    <p className="text-center text-xs sm:text-sm text-gray-600 mb-2">
+      Scan the QR code or copy the address:
+    </p>
+
+    <div className="flex items-center bg-gray-100 p-3 rounded-lg border border-gray-300">
+      <div className="flex-1 text-xs break-all font-mono text-slate-800 select-all">
+        {walletAddress}
+      </div>
+      <button 
+        onClick={() => copyToClipboard(walletAddress)}
+        className="ml-3 p-2 rounded-lg bg-white shadow-sm border border-gray-300 hover:bg-gray-200 transition duration-300"
+        title="Copy Address"
+      >
+        <ClipboardCopy size={16} className={color} />
+      </button>
+    </div>
+
+  </div>
 );
