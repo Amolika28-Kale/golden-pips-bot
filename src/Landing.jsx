@@ -103,6 +103,39 @@ testimonial3:"https://media.istockphoto.com/id/1707950357/photo/cheerful-young-w
     return <div className="flex text-lg">{starArray}</div>;
   };
 
+
+// Countdown Timer (7 days from now)
+const [timer, setTimer] = React.useState({
+  days: 0,
+  hours: 0,
+  minutes: 0,
+  seconds: 0
+});
+
+React.useEffect(() => {
+  const offerEnd = new Date();
+  offerEnd.setDate(offerEnd.getDate() + 7); // 7-day offer
+
+  const interval = setInterval(() => {
+    const now = new Date();
+    const diff = offerEnd - now;
+
+    if (diff <= 0) {
+      clearInterval(interval);
+      return;
+    }
+
+    setTimer({
+      days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+      hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
+      minutes: Math.floor((diff / (1000 * 60)) % 60),
+      seconds: Math.floor((diff / 1000) % 60)
+    });
+  }, 1000);
+
+  return () => clearInterval(interval);
+}, []);
+
   return (
     <>
       <Helmet>
@@ -521,24 +554,43 @@ testimonial3:"https://media.istockphoto.com/id/1707950357/photo/cheerful-young-w
               ))}
             </ul>
           </div>
-          {/* Pricing */}
-          <div id="pricing" className="mt-16 max-w-5xl mx-auto bg-green-50 border border-green-100 p-10 rounded-2xl text-center">
-            <div className="text-sm text-slate-600">Pricing</div>
-            <div className="text-4xl font-bold text-green-600 mt-3">
-              $149 <span className="text-lg text-gray-600">/year</span>
-            </div>
-            <p className="mt-2 text-sm text-slate-600">
-              Full access for one year. No extra fees.
-            </p>
-            <div className="mt-4 text-sm">
-              <span className="bg-white px-3 py-2 border rounded-md">
-                Profit Sharing Option
-              </span>
-              <div className="text-xs text-gray-500 mt-2">
-                Pay only 30% of profits.
-              </div>
-            </div>
-          </div>
+   {/* Pricing */}
+<div id="pricing" className="mt-16 max-w-5xl mx-auto bg-green-50 border border-green-100 p-10 rounded-2xl text-center">
+
+  {/* Countdown Timer */}
+  <div className="text-red-600 text-sm font-semibold mb-3">
+    Special Offer ends in: 
+    <span className="ml-2 font-bold">
+      {timer.days}d : {timer.hours}h : {timer.minutes}m : {timer.seconds}s
+    </span>
+  </div>
+
+  <div className="text-sm text-slate-600">Pricing</div>
+
+  {/* Main Price */}
+  <div className="text-4xl font-bold text-red-500 mt-3 line-through">
+    $299 <span className="text-lg text-gray-600">/year</span>
+  </div>
+
+  {/* Special Offer Price */}
+  <div className="text-5xl font-bold text-green-600 mt-1">
+    $149 <span className="text-lg text-gray-600">/year</span>
+  </div>
+
+  <p className="mt-2 text-sm text-slate-600">
+    Full access for one year. No extra fees.
+  </p>
+
+  <div className="mt-4 text-sm">
+    <span className="bg-white px-3 py-2 border rounded-md">
+      Profit Sharing Option
+    </span>
+    <div className="text-xs text-gray-500 mt-2">
+      Pay only 30% of profits.
+    </div>
+  </div>
+</div>
+
         </section>
         {/* ---------------- CONTACT ---------------- */}
         <section id="contact" className="py-20 px-6 bg-gray-50">
