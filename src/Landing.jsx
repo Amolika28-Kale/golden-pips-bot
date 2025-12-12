@@ -286,7 +286,7 @@ export default function Landing() {
                     className="rounded-md w-full object-cover h-24"
                   />
                   <div className="mt-2 text-sm font-semibold text-slate-700">
-                    XIV / USD
+                    XAU / USD
                   </div>
                   {/* <div className="text-xs text-[#2B5876] mt-1">65,000</div> Updated small metric color */}
                 </div>
@@ -643,10 +643,10 @@ export default function Landing() {
               <span className="text-xl max-md:text-lg max-sm:text-base font-semibold text-gray-300">/year</span>
             </div>
 
-            {/* Text immediately under $149 */}
-            <p className="mt-2 text-base max-sm:text-sm text-gray-300 font-semibold relative z-20 text-center">
-              only 30% profit sharing to manager
-            </p>
+       <p className="mt-2 text-base max-sm:text-sm text-gray-300 font-semibold text-center">
+  Only 30% profit is shared with the manager.
+</p>
+
 
             {/* Old compare */}
             <p className="mt-3 text-sm max-sm:text-xs font-semibold text-gray-400 relative z-20 text-center">
