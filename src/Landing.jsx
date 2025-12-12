@@ -286,9 +286,9 @@ export default function Landing() {
                     className="rounded-md w-full object-cover h-24"
                   />
                   <div className="mt-2 text-sm font-semibold text-slate-700">
-                    BTC / USD
+                    XIV / USD
                   </div>
-                  <div className="text-xs text-[#2B5876] mt-1">65,000</div> {/* Updated small metric color */}
+                  {/* <div className="text-xs text-[#2B5876] mt-1">65,000</div> Updated small metric color */}
                 </div>
               </motion.div>
             </div>
@@ -645,7 +645,7 @@ export default function Landing() {
 
             {/* Text immediately under $149 */}
             <p className="mt-2 text-base max-sm:text-sm text-gray-300 font-semibold relative z-20 text-center">
-              only 30% profit sharing
+              only 30% profit sharing to manager
             </p>
 
             {/* Old compare */}
@@ -659,7 +659,41 @@ export default function Landing() {
               Get 1 year of premium access
             </p>
           </div>
-
+<div className="mt-16 max-w-4xl mx-auto">
+        <div className="bg-gradient-to-r from-[#1E3A5A] to-[#2B5876] text-white rounded-xl p-8 max-sm:p-6 shadow-xl">
+          <h4 className="text-2xl font-bold text-center mb-6">Choose Your Payment Method</h4>
+          <div className="grid md:grid-cols-2 gap-8 text-center items-center">
+            {/* Pay with Crypto Button */}
+            <div className="bg-white/10 p-6 rounded-xl flex flex-col items-center justify-center h-full">
+              <div className="font-semibold mb-3">Crypto Payment (USDT)</div>
+              <p className="text-sm text-white/80 mb-6">
+                Pay via BEP20 (BSC) or TRC20 (Tron) instantly.
+              </p>
+              <button
+                onClick={() => navigate("/crypto-payment")}
+                className="bg-[#C6A479] hover:bg-[#B39369] text-slate-900 font-bold py-3 px-6 rounded-full shadow-lg transition transform hover:scale-105 flex items-center gap-2" // UPDATED BUTTON
+              >
+                <span>💳</span> View Crypto Details
+              </button>
+            </div>
+            {/* WhatsApp Connect for Other Methods */}
+            <div className="bg-white/10 p-6 rounded-xl flex flex-col justify-center h-full">
+              <div className="font-semibold mb-3">Other Payment Methods</div>
+              <p className="text-sm text-white/80 mb-6">
+                For UPI, Bank Transfer, or questions, chat with us on WhatsApp.
+              </p>
+              <a
+                href={`https://wa.me/${whatsappUrlNumber}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-[#2B5876] px-6 py-3 rounded-full text-white font-medium hover:bg-[#3D7196] inline-block shadow-lg transition transform hover:scale-105" // UPDATED BUTTON
+              >
+                Chat on WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
         </section>
         {/* ---------------- CONTACT ---------------- */}
         <section id="contact" className="py-20 px-6 bg-gray-50">
@@ -702,40 +736,7 @@ export default function Landing() {
                 <div className="text-xs text-white/80 mt-2">Choose your model</div>
               </div>
             </div>
-            {/* Payment Options Section */}
-            <div className="mt-10">
-              <h4 className="text-xl font-bold text-center mb-6">Payment Options</h4>
-              <div className="grid md:grid-cols-2 gap-8 text-center items-center">
-                {/* Pay with Crypto Button */}
-                <div className="bg-white/10 p-8 rounded-xl flex flex-col items-center justify-center h-full">
-                  <div className="font-semibold mb-3">Crypto Payment (USDT)</div>
-                  <p className="text-sm text-white/80 mb-6">
-                    Pay via BEP20 (BSC) or TRC20 (Tron) instantly.
-                  </p>
-                  <button
-                    onClick={() => navigate("/crypto-payment")}
-                    className="bg-[#C6A479] hover:bg-[#B39369] text-slate-900 font-bold py-3 px-6 rounded-full shadow-lg transition transform hover:scale-105 flex items-center gap-2" // UPDATED BUTTON
-                  >
-                    <span>💳</span> View Crypto Details
-                  </button>
-                </div>
-                {/* WhatsApp Connect */}
-                <div className="bg-white/10 p-8 rounded-xl flex flex-col justify-center h-full">
-                  <div className="font-semibold mb-3">Other Payment Methods</div>
-                  <p className="text-sm text-white/80 mb-6">
-                    For UPI, Bank Transfer, or questions, chat with us on WhatsApp.
-                  </p>
-                  <a
-                    href={`https://wa.me/${whatsappUrlNumber}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-[#2B5876] px-6 py-3 rounded-full text-white font-medium hover:bg-[#3D7196] inline-block shadow-lg" // UPDATED BUTTON
-                  >
-                    Chat on WhatsApp
-                  </a>
-                </div>
-              </div>
-            </div>
+           
             <div className="mt-10 flex justify-center gap-4 border-t border-white/20 pt-8">
               <a
                 href={`https://wa.me/${whatsappUrlNumber}`}
