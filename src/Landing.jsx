@@ -170,9 +170,9 @@ React.useEffect(() => {
   <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4 relative z-50">
     {/* LOGO */}
     <div className="flex items-center gap-3">
-      <div className="w-10 h-10 rounded-md bg-gradient-to-br to-indigo-600 flex items-center justify-center text-white font-bold">
-        <img src="./images/logo.png" alt="Logo" className="w-6 h-6" />
-      </div>
+      <div className="w-10 h-10 rounded-md bg-gradient-to-br flex items-center justify-center text-white font-bold">
+  <img src="./images/logo.png" alt="Logo" className="w-9 h-9" />
+</div>
       <span className="font-semibold text-lg">Golden Pips Bot</span>
     </div>
 
@@ -787,9 +787,10 @@ onClick={() => navigate("/crypto-payment")}
           <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center gap-2">
-                <div className="w-10 h-10 rounded-md bg-gradient-to-br flex items-center justify-center text-white font-bold">
-                  <img src="./images/logo.png" alt="Logo" className="w-6 h-6" />
-                </div>
+ <div className="w-12 h-12 rounded-md bg-gradient-to-br flex items-center justify-center text-white font-bold">
+  <img src="./images/logo.png" alt="Logo" className="w-10 h-10" />
+</div>
+
                 <div className="font-semibold">Golden Pips Bot</div>
               </div>
               <p className="text-sm text-gray-400 mt-4">
