@@ -554,41 +554,113 @@ React.useEffect(() => {
               ))}
             </ul>
           </div>
-   {/* Pricing */}
-<div id="pricing" className="mt-16 max-w-5xl mx-auto bg-green-50 border border-green-100 p-10 rounded-2xl text-center">
+<div
+  id="pricing"
+  className="mt-20 max-w-4xl mx-auto relative rounded-[28px]
+  bg-gradient-to-br from-[#0d0d0d] via-[#111] to-[#1a1a1a]
+  p-12 max-md:p-8 max-sm:p-6
+  overflow-hidden border border-white/10
+  shadow-[0_0_40px_rgba(0,255,100,0.15)]
+  text-center"
+>
 
-  {/* Countdown Timer */}
-  <div className="text-red-600 text-sm font-semibold mb-3">
-    Special Offer ends in: 
-    <span className="ml-2 font-bold">
-      {timer.days}d : {timer.hours}h : {timer.minutes}m : {timer.seconds}s
+  {/* Neon Glow Ring */}
+  <div className="absolute inset-0 rounded-[32px] opacity-30 
+  bg-[conic-gradient(at_top_left,_#00ff99,_transparent,_transparent,_#00ffc3,_transparent)] 
+  blur-2xl"></div>
+
+  {/* Top Shine Line */}
+  <div className="absolute top-0 left-0 w-full h-[2px] 
+  bg-gradient-to-r from-green-400 via-white to-green-400 opacity-70"></div>
+
+  {/* Premium Badge */}
+  <div className="relative z-20 inline-block mb-6">
+    <span className="bg-[#00ff9d]/20 text-[#00ffae] border border-[#00ff9d]/40 
+    px-6 py-2 max-sm:px-4 max-sm:py-1 rounded-full 
+    text-sm max-sm:text-xs font-semibold shadow-xl 
+    backdrop-blur-md flex items-center gap-2 uppercase tracking-wide">
+      ✨ Limited-Time Premium Offer
     </span>
   </div>
 
-  <div className="text-sm text-slate-600">Pricing</div>
+  {/* Countdown */}
+  <div className="relative z-20 mb-12 text-center">
+    <p className="text-gray-300 font-semibold text-lg max-sm:text-base mb-4 tracking-wide text-center">
+      Offer ends in
+    </p>
 
-  {/* Main Price */}
-  <div className="text-4xl font-bold text-red-500 mt-3 line-through">
-    $299 <span className="text-lg text-gray-600">/year</span>
-  </div>
-
-  {/* Special Offer Price */}
-  <div className="text-5xl font-bold text-green-600 mt-1">
-    $149 <span className="text-lg text-gray-600">/year</span>
-  </div>
-
-  <p className="mt-2 text-sm text-slate-600">
-    Full access for one year. No extra fees.
-  </p>
-
-  <div className="mt-4 text-sm">
-    <span className="bg-white px-3 py-2 border rounded-md">
-      Profit Sharing Option
-    </span>
-    <div className="text-xs text-gray-500 mt-2">
-      Pay only 30% of profits.
+    <div className="flex justify-center gap-4 max-sm:gap-2 text-center flex-wrap">
+      {["Days", "Hours", "Minutes", "Seconds"].map((label, i) => {
+        const values = [
+          timer.days,
+          timer.hours,
+          timer.minutes,
+          timer.seconds,
+        ];
+        return (
+          <div
+            key={label}
+            className="bg-[#111] 
+            p-6 max-md:p-4 max-sm:p-3 
+            rounded-2xl shadow-lg border border-white/10 
+            hover:border-green-400/40 hover:shadow-[0_0_20px_rgba(0,255,160,0.3)]
+            hover:scale-105 transition-all duration-200 
+            w-24 max-sm:w-20 backdrop-blur-md text-center"
+          >
+            <div className="text-5xl max-md:text-4xl max-sm:text-3xl font-black text-green-400 drop-shadow text-center">
+              {values[i]}
+            </div>
+            <div className="mt-1 text-xs max-sm:text-[10px] uppercase font-medium text-gray-400 tracking-wide text-center">
+              {label}
+            </div>
+          </div>
+        );
+      })}
     </div>
   </div>
+
+  {/* Pricing Title */}
+  <div className="text-xs max-sm:text-[10px] text-green-400 font-bold tracking-[3px] uppercase mb-3 relative z-20 text-center">
+    Premium Pricing
+  </div>
+
+  {/* Old Price */}
+  <div className="mt-4 text-4xl max-md:text-3xl max-sm:text-2xl font-extrabold text-red-400 
+  flex justify-center items-center gap-3 relative z-20 text-center">
+    <span className="line-through opacity-70">$299</span>
+    <span className="text-lg max-sm:text-sm line-through text-gray-400 opacity-50">/year</span>
+
+    <span className="ml-2 text-sm max-sm:text-xs font-bold text-red-500 
+    bg-red-500/20 border border-red-500/40 px-3 py-1 rounded-full max-sm:px-2 max-sm:py-[3px]">
+      SAVE $150
+    </span>
+  </div>
+
+  {/* New Price */}
+  <div
+    className="mt-4 text-7xl max-md:text-6xl max-sm:text-5xl font-black text-green-400 
+      drop-shadow-[0_0_20px_rgba(0,255,140,0.3)] 
+      flex justify-center items-center gap-3 relative z-20 text-center"
+  >
+    <span>$149</span>
+    <span className="text-xl max-md:text-lg max-sm:text-base font-semibold text-gray-300">/year</span>
+  </div>
+
+  {/* Text immediately under $149 */}
+  <p className="mt-2 text-base max-sm:text-sm text-gray-300 font-semibold relative z-20 text-center">
+    only 30% profit sharing
+  </p>
+
+  {/* Old compare */}
+  <p className="mt-3 text-sm max-sm:text-xs font-semibold text-gray-400 relative z-20 text-center">
+    (Original <span className="line-through text-red-400">$299</span>)
+  </p>
+
+  {/* Features */}
+  <p className="mt-6 text-base max-sm:text-sm text-gray-300 font-medium max-w-xl mx-auto 
+  leading-relaxed relative z-20 opacity-90 text-center">
+    Get 1 year of premium access 
+  </p>
 </div>
 
         </section>

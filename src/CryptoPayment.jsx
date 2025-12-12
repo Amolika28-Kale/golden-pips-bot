@@ -79,9 +79,20 @@ export default function CryptoPayment() {
           <Send size={20} className="text-blue-500 mt-0.5 min-w-max" />
           <div>
             <strong className="text-blue-700">Important: Instant Activation</strong>
-            <p className="text-gray-700 mt-1">
-              After a successful transfer, **please send a screenshot** of the transaction details to our WhatsApp number for immediate service activation.
-            </p>
+           <p className="text-gray-700 mt-1">
+  After a successful transfer, <strong>please send a screenshot</strong> of the transaction details to our WhatsApp number for immediate service activation.
+</p>
+
+{/* Added Setup Time Note */}
+<p className="text-gray-700 mt-2 font-semibold">
+  ⏳ Setup Time: Minimum <span className="text-blue-700">24 hours</span> to Maximum <span className="text-blue-700">48 hours</span> after payment.
+</p>
+
+{/* Added Non-Refundable Note */}
+<p className="text-red-600 mt-1 font-bold">
+  ⚠️ Condition: Payment is strictly non-refundable.
+</p>
+
             <a 
               href={`https://wa.me/${whatsappUrlNumber}?text=I%20have%20completed%20the%20USDT%20payment.%20Please%20activate%20my%20account.`}
               target="_blank"
