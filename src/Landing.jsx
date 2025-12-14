@@ -729,7 +729,7 @@ export default function Landing() {
               </div>
               <div className="bg-white/10 p-6 rounded-xl">
                 <div className="text-sm font-semibold">Flexible Pricing</div>
-                <div className="mt-2 font-bold text-[#C6A479]">$149/year or 30% profit share</div> {/* UPDATED COLOR */}
+                <div className="mt-2 font-bold text-[#C6A479]">$149/year and 30% profit share</div> {/* UPDATED COLOR */}
                 <div className="text-xs text-white/80 mt-2">Choose your model</div>
               </div>
             </div>
