@@ -48,7 +48,7 @@ export default function Landing() {
   const CONTACT_INFO = {
     whatsappNumber: "+91 8689937319",
     callNumber: "+91 8689937319",
-    email: "support.goldenpipsbot@gmail.com",
+    email: "info.goldenpipsbot@gmail.com",
     wallets: {
       bep20: "0xa91D8Ba3029FC14907cb4bEE60763869f0eD88f7",
       trc20: "TGTmCXghBxNAkUxeL7hnDPjQiQicKG26v2"
