@@ -758,7 +758,7 @@ export default function Landing() {
             <div>
               <div className="font-semibold text-lg">Choose Your Preferred Pricing Model</div>
               <div className="text-sm opacity-90">
-                Annual subscription ($149/year) or 30% profit share — your choice!
+                Annual subscription ($149/year) and 30% profit share — your choice!
               </div>
             </div>
             <div className="flex gap-3">
